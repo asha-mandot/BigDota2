@@ -1,0 +1,18 @@
+select
+	tmp.hero_id,
+	MIN(h.localized_name) as name,
+	count(*) cnt
+from
+	(
+		select
+			player.hero_id AS hero_id
+		from
+			dota.dota_json LATER VIEW explode(players AS player) tmp
+JOIN
+	dota.heroes h
+ON
+	tmp.hero_id = CAST(h.id AS STRING)
+GROUP BY
+	tmp.hero_id
+ORDER BY
+	cnt DESC:
