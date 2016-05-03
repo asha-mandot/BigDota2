@@ -1,5 +1,7 @@
 import dota2api
 import json
+
+#api key is intialized here
 api = dota2api.Initialise("DE5BDCD61BDD0DE4D289975A9D8F0BDA")
 
 heroes = api.get_heroes()
@@ -15,11 +17,10 @@ heroes = heroes.replace("'",'"')
 items = items.replace("u","")
 items = items.replace("'",'"')
 # print heroes
-print "*******************"
 # print items
 
 
-
+#hero and item summaries are written into separate files here
 with open("hero_summary.json", "w") as f:
 	f.write(heroes)
 f.close()

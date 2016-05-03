@@ -3,23 +3,26 @@ from bs4 import BeautifulSoup
 import urllib2
 import json
 
+#this fetches the response form the api
 def fetch(url):
 	try:
-		print "sdfsd"
+		# print "sdfsd"
 		req = urllib2.Request(url)
 		response = urllib2.urlopen(req)
 		the_page = response.read()
 		soup = BeautifulSoup(the_page, "html.parser")
 
 		if (soup.find("status").text == "15"):
-			print "vachindi"
+			# print "vacindi"
 			return None
 		else:
-			print "raledhu"
+			# print "raledhu"
 			return soup
 	except:
 		pass
 
+
+#this retreives the match_ds page by page of a player by forming the urls automatically
 def process(ac_id):
 	remaining_results = -1
 	all_matchid = []
@@ -50,6 +53,7 @@ def process(ac_id):
 
 	all_matchid = list(set(all_matchid))
 	count =0
+	#all match ids are written into files here
 	f= open(str(ac_id), "w")
 	for item in all_matchid:
 		# print item 
@@ -59,6 +63,7 @@ def process(ac_id):
 	f.close()
 
 
+#all the professional player account ids are picked here from file
 with open('pf_ac_ids') as f:
     lines = f.readlines()
 f.close()

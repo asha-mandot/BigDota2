@@ -6,7 +6,7 @@ import requests
 from threading import Thread
 import time
 
-
+#function that retreives match history of each player provided as input
 def worker(item):
 		try:
 			match = []
@@ -28,22 +28,24 @@ def worker(item):
 			match = match.replace("'" , '"')
 			print match
 			count = count + 1			
-			# f.write(str(match)+"\n")
-			# print count
 		except:
 			pass
 		return match
-	# f.close()
 
-
+#api key is intialized here
 api = dota2api.Initialise("DE5BDCD61BDD0DE4D289975A9D8F0BDA")
 account_id = '10366616'
 i=0
 count = 0
 match =""
+
+#match ids are taken from the file 
 with open('pf_match_id/10366616') as f: 
 		lines = f.readlines()
 f.close()
+
+
+# data is written in to files
 with open("pf_match_id/10366616_match_history.json", "w") as f:
 	for item in lines:	
 			# print item
@@ -51,7 +53,5 @@ with open("pf_match_id/10366616_match_history.json", "w") as f:
 			# print match
 			time.sleep(1)
 	# print match
-
-
 			f.write(str(match)+"\n")
 f.close()

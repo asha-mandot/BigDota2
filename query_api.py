@@ -2,7 +2,7 @@ import dota2api
 from bs4 import BeautifulSoup
 import urllib2
 import json
-
+# this fetches reponse from the api
 def fetch(url):
 	req = urllib2.Request(url)
 	response = urllib2.urlopen(req)
@@ -10,6 +10,8 @@ def fetch(url):
 	return the_page
 
 
+
+#this process the collectiong players personal matchids page by page by forming the url automatically
 remaining_results = -1
 all_matchid = []
 checker = 1
